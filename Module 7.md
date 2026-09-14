@@ -16,17 +16,40 @@ Else
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+
+struct person {
+    int age;
+    char name[10];
+};
+
+int main() {
+    struct person p;
+    scanf("%d %s", &p.age, p.name);
+    printf("Age:%d\n", p.age);
+    printf("Name:%s", p.name);
+    printf("vaccine:%d\n", p.age); 
+    printf("eligibility:");
+
+    if (p.age > 18) {
+        printf("yes");
+    } else {
+        printf("no");
+    }
+
+    return 0;
+}
+```
 
 
 Output:
 
-//paste your output here
+<img width="646" height="311" alt="WhatsApp Image 2026-09-14 at 5 03 49 PM" src="https://github.com/user-attachments/assets/35daffe1-5563-4dea-8b87-d47c848f23a9" />
 
 
 Result:
 Thus, the program is verified successfully. 
-
 
 
 EXP NO:2 C PROGRAM FOR PASSING STRUCTURES AS FUNCTION ARGUMENTS AND RETURNING A STRUCTURE FROM A FUNCTION
@@ -44,17 +67,41 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+struct Input
+{
+    int x;
+    int y;
+};
 
+struct Output
+{
+    int sum;
+};
 
+struct Output add(struct Input in) 
+{
+    struct Output out;
+    out.sum = in.x + in.y;
+    return out;
+}
 
+int main() {
+    struct Input values;
+    struct Output result;
+    scanf("%d", &values.x);
+    scanf("%d", &values.y);
+    result = add(values);
+    printf("%d\n", result.sum);
+
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
+<img width="393" height="367" alt="WhatsApp Image 2026-09-14 at 5 04 50 PM" src="https://github.com/user-attachments/assets/1a3e4f24-ff8e-4b9b-ae31-b2b429ff6359" />
 
 
 Result:
@@ -86,25 +133,31 @@ Use scanf to input the file name into the name array.
  
 Program:
 
-//type your code here
-
-
-
+```
+#include <stdio.h>
+int main()
+{
+    FILE *fp;
+    char name[20];
+    scanf("%s",name);
+    fp=fopen(name,"w");
+    if(fp==NULL)
+    {
+        printf("error checking");
+    }
+    else
+    {
+        printf("%s File Created Successfully\n%s File Opened\n",name,name);
+    }
+    fclose(fp);
+    printf("%s File Closed\n",name);
+}
+```
 
 Output:
 
 
-//paste your output here
-
-
-
-
-
-
-
-
-
-
+<img width="1142" height="441" alt="WhatsApp Image 2026-09-14 at 5 06 43 PM" src="https://github.com/user-attachments/assets/1574dcba-5ea9-499e-a8b8-88f72191f2e9" />
 
 Result:
 Thus, the program is verified successfully
@@ -133,24 +186,45 @@ Use scanf to input the file name into the name array and the number of strings i
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
 
+int main() {
+    char filename[100];
+    char line[100];
+    int n, i;
+    FILE *file;
+    scanf("%s", filename);
+    file = fopen(filename, "w");
 
+    if (file == NULL) 
+    {
+        printf("Error: Could not create %s\n", filename);
+        return 1;
+    }
+    scanf("%d", &n);
+    getchar();
+    for (i = 0; i < n; i++) {
+        fgets(line, sizeof(line), stdin); 
+        fputs(line, file);                
+    }
 
+  
+    fclose(file);
+    printf("%s Opened\n", filename);
+    printf("Data added Successfully\n");
+
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
-
-
+<img width="827" height="440" alt="WhatsApp Image 2026-09-14 at 5 08 10 PM" src="https://github.com/user-attachments/assets/6d6b733f-0bb6-4712-9bce-dce027712e3a" />
 
 
 Result:
 Thus, the program is verified successfully
-
 
 
 Ex No 5 : C PROGRAM TO DISPLAY STUDENT DETAILS USING STRUCTURE
@@ -187,19 +261,62 @@ Algorithm:
 
 Program:
 
-//type your code here
+```
+#include <stdio.h>
 
+#define TOTAL_WORKING_DAYS 84
+#define MAX_DAYS_PER_MONTH 21
 
+struct Student {
+    int regNo;
+    char name[50];
+    int june;
+    int july;
+    int august;
+    int september;
+    int totalPresent;
+    float attendancePercentage;
+    char eligibility[4]; 
+};
 
+int main() {
+    struct Student s;
+    scanf("%d", &s.regNo);
+    scanf("%s", s.name);
+    scanf("%d", &s.june);
+    scanf("%d", &s.july);
+    scanf("%d", &s.august);
+    scanf("%d", &s.september);
+    
+    if (s.june > MAX_DAYS_PER_MONTH || s.july > MAX_DAYS_PER_MONTH ||
+        s.august > MAX_DAYS_PER_MONTH || s.september > MAX_DAYS_PER_MONTH) 
+        {
+        printf("Error: Days present in any month should not exceed 21.\n");
+        return 1;
+    }
+
+    s.totalPresent = s.june + s.july + s.august + s.september;
+    
+    s.attendancePercentage = (s.totalPresent / (float)TOTAL_WORKING_DAYS) * 100;
+    
+    if (s.attendancePercentage > 75.0)
+        sprintf(s.eligibility, "yes");
+    else
+        sprintf(s.eligibility, "no");
+        
+    printf("Reg.no:%d\n", s.regNo);
+    printf("Name:%s\n", s.name);
+    printf("Total.No.of.present days:%d\n", s.totalPresent);
+    printf("Attendence:%.2f\n", s.attendancePercentage);
+    printf("eligibility:%s\n", s.eligibility);
+
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
-
-
+<img width="866" height="527" alt="WhatsApp Image 2026-09-14 at 5 08 25 PM" src="https://github.com/user-attachments/assets/f3d9d395-3f4e-4076-920f-38dd064fd6e9" />
 
 
 Result:
