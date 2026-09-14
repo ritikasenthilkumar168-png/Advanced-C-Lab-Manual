@@ -16,19 +16,37 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
 
+int main() {
+    int n;
+    scanf("%d", &n);
 
+    if (n >= 71 && n <= 79) {
+        switch (n) {
+            case 71: printf("seventy one\n"); break;
+            case 72: printf("seventy two\n"); break;
+            case 73: printf("seventy three\n"); break;
+            case 74: printf("seventy four\n"); break;
+            case 75: printf("seventy five\n"); break;
+            case 76: printf("seventy six\n"); break;
+            case 77: printf("seventy seven\n"); break;
+            case 78: printf("seventy eight\n"); break;
+            case 79: printf("seventy nine\n"); break;
+        }
+    } 
+    else if (n > 79) {
+        printf("Greater than 79\n");
+    }
 
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
-
-
+<img width="588" height="295" alt="WhatsApp Image 2026-09-14 at 5 16 30 PM" src="https://github.com/user-attachments/assets/d217949a-a2ae-412a-a5b0-fe66691ed53d" />
 
 
 Result:
@@ -47,19 +65,30 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
 
+int main() {
+    char str[1000];
+    int freq[10] = {0};
 
+    scanf("%s", str);
 
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= '0' && str[i] <= '9')
+            freq[str[i] - '0']++;
+    }
+
+    for (int i = 0; i < 10; i++)
+        printf("%d ", freq[i]);
+
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
-
-
+<img width="798" height="226" alt="WhatsApp Image 2026-09-14 at 5 20 34 PM" src="https://github.com/user-attachments/assets/84c5ee4f-6764-4fff-8567-b7d75c13e088" />
 
 
 Result:
@@ -84,19 +113,60 @@ Free the memory allocated for each string in s Free the memory allocated for s
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+void swap(char **a, char **b) {
+    char *temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
+int next_permutation(char *arr[], int n) {
+    int i = n - 2;
+    while (i >= 0 && strcmp(arr[i], arr[i + 1]) >= 0)
+        i--;
+    if (i < 0)
+        return 0;
+    int j = n - 1;
+    while (strcmp(arr[i], arr[j]) >= 0)
+        j--;
+    swap(&arr[i], &arr[j]);
+    for (int l = i + 1, r = n - 1; l < r; l++, r--)
+        swap(&arr[l], &arr[r]);
+    return 1;
+}
 
+int compare(const void *a, const void *b) {
+    return strcmp(*(const char **)a, *(const char **)b);
+}
 
+int main() {
+    int n;
+    scanf("%d", &n);
+    char **arr = (char **)malloc(n * sizeof(char *));
+    for (int i = 0; i < n; i++) {
+        arr[i] = (char *)malloc(101 * sizeof(char)); 
+        scanf("%s", arr[i]);
+    }
+        qsort(arr, n, sizeof(char *), compare);
+    
+    do {
+        for (int i = 0; i < n; i++)
+            printf("%s%c", arr[i], i == n - 1 ? '\n' : ' ');
+    } while (next_permutation(arr, n));
+    for (int i = 0; i < n; i++)
+        free(arr[i]);
+    free(arr);
+    
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
-
-
+<img width="437" height="441" alt="WhatsApp Image 2026-09-14 at 5 21 14 PM" src="https://github.com/user-attachments/assets/a09d732d-2e2e-4dba-a741-030be695361e" />
 
 
 Result:
@@ -117,19 +187,34 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
 
+void printPattern(int n) {
+    int size = 2 * n - 1;
+    for (int i = 0; i < size; i++) 
+    {
 
+        for (int j = 0; j < size; j++) 
+        {
+            int value = n - (i < j ? (i < size - j - 1 ? i : size - j - 1) : (j < size - i - 1 ? j : size - i - 1));
+            printf("%d ", value);
+        }
+        printf("\n");
+    }
+}
 
+int main() {
+    int n;
+    scanf("%d", &n);
+    printPattern(n);
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
-
-
+<img width="540" height="785" alt="WhatsApp Image 2026-09-14 at 5 21 30 PM" src="https://github.com/user-attachments/assets/d1eddd5a-cd4b-4244-ba6f-f5ab96215f9d" />
 
 
 Result:
@@ -156,47 +241,27 @@ o	Call the square() function and display the result.
 
 Program:
 
-//type your code here
+```
+#include <stdio.h>
 
-
-
+int main() {
+    int n;
+    scanf("%d", &n);
+    int d1, d2, d3, d4, d5, sum;
+    d1 = n / 10000;          
+    d2 = (n / 1000) % 10;   
+    d3 = (n / 100) % 10;   
+    d4 = (n / 10) % 10;    
+    d5 = n % 10;            
+    sum = d1 + d2 + d3 + d4 + d5;
+    printf("%d\n", sum);
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="387" height="235" alt="WhatsApp Image 2026-09-14 at 5 21 44 PM" src="https://github.com/user-attachments/assets/05dfae42-7fde-4918-a1bf-2ace024cbe89" />
 
 Result:
-Thus, the program is verified successfully
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Thus, the program is verified successfully.
